@@ -1,5 +1,8 @@
 const Game = require('../models/Game');
 const Engine = require('../models/Engine');
+const Genre = require('../models/Genre');
+
+const Sequelize = require('sequelize');
 
 module.exports = {
   async index(req, res) {
@@ -18,19 +21,15 @@ module.exports = {
   },
 
   async store(req, res) {
-    const { name, release_date, description, engine_id } = req.body;
+    const { name, release_date, description, engine } = req.body;
 
-    const engine = await Engine.findByPk(1);
-
-    if (!engine) {
-      return res.status(400).json({ error: 'Engine not found' });
-    }
+    engine = await Engine.findOrCreate({ where: { name: engine } });
 
     const game = await Game.create({
       name,
       release_date,
       description,
-      engine_id,
+      engine_id: engine.id,
     });
 
     return res.json(game);

@@ -14,6 +14,11 @@ class Game extends Model {
 
   static associate(models) {
     this.belongsTo(models.Engine, { foreignKey: 'engine_id', as: 'engine' });
+    this.belongsToMany(models.Genre, {
+      foreignKey: 'game_id',
+      through: 'game_genres',
+      as: 'genres',
+    });
   }
 }
 
