@@ -10,7 +10,7 @@ module.exports = {
   async store(req, res) {
     const { name } = req.body;
 
-    const engine = await Engine.create({ name });
+    const [engine] = await Engine.findCreateFind({ where: { name } });
 
     return res.json(engine);
   },
