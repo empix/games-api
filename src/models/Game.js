@@ -19,6 +19,11 @@ class Game extends Model {
       through: 'game_genres',
       as: 'genres',
     });
+    this.belongsToMany(models.Developer, {
+      foreignKey: 'game_id',
+      through: 'game_developers',
+      as: 'developers',
+    });
   }
 }
 

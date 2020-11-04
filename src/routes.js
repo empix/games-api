@@ -4,6 +4,7 @@ const router = express.Router();
 const EngineController = require('./controllers/EngineController');
 const GameController = require('./controllers/GameController');
 const GenreController = require('./controllers/GenreController');
+const DeveloperController = require('./controllers/DeveloperController');
 
 router.get('/engine', EngineController.index);
 router.post('/engine', EngineController.store);
@@ -14,5 +15,8 @@ router.delete('/game', GameController.delete);
 
 router.get('/genre', GenreController.index);
 router.post('/genre', GenreController.store);
+
+router.get('/developer', DeveloperController.index);
+router.post('/developer', DeveloperController.store);
 
 module.exports = router;
