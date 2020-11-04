@@ -20,7 +20,7 @@ Estudar e aprender mais sobre o ORM Sequelize e APIs.
 
 ### Endpoints
 
-**GET** - `/engine` - Lista todas as engines do banco de dados <br>
+**GET** - `/engine` - Lista todas as engines no banco de dados <br>
 **POST** - `/engine` - Adiciona uma engine no banco de dados <br>
 **Exemplo de corpo json:**
 
@@ -32,7 +32,7 @@ Estudar e aprender mais sobre o ORM Sequelize e APIs.
 
 <br>
 
-**GET** - `/game` - Lista todos os jogos do banco de dados <br>
+**GET** - `/game` - Lista todos os jogos no banco de dados <br>
 **POST** - `/game` - Adiciona um jogo no banco de dados <br>
 **Exemplo de corpo json:**
 
@@ -42,6 +42,25 @@ Estudar e aprender mais sobre o ORM Sequelize e APIs.
   "release_date": "2015-09-15",
   "description": "UNDERTALE! The RPG game where you don't have to destroy anyone.",
   "engine_id": 1
+}
+```
+
+**DELETE** - `/game` - Deleta um jogo no banco de dados <br>
+**Exemplo de corpo json:**
+
+```json
+{
+  "id": 1
+}
+```
+
+**GET** - `/genre` - Lista todos os generos no banco de dados <br>
+**POST** - `/genre` - Adiciona um genero no banco de dados <br>
+**Exemplo de corpo json:**
+
+```json
+{
+  "name": "Indie"
 }
 ```
 
