@@ -20,6 +20,7 @@ router.post('/genre', GenreController.store);
 router.get('/developer', DeveloperController.index);
 router.post('/developer', DeveloperController.store);
 
+router.get('/publisher', PublisherController.index);
 router.post('/publisher', PublisherController.store);
 
 module.exports = router;
