@@ -4,7 +4,19 @@ const Engine = require('../models/Engine');
 module.exports = {
   async index(req, res) {
     const games = await Game.findAll({
-      include: { association: 'engine', attributes: ['id', 'name'] },
+      include: [
+        { association: 'engine', attributes: ['id', 'name'] },
+        {
+          association: 'genres',
+          attributes: ['id', 'name'],
+          through: { attributes: [] },
+        },
+        {
+          association: 'developers',
+          attributes: ['id', 'name'],
+          through: { attributes: [] },
+        },
+      ],
       attributes: ['id', 'name', 'release_date', 'description'],
     });
 
@@ -12,7 +24,14 @@ module.exports = {
   },
 
   async store(req, res) {
-    const { name, release_date, description, engine_id } = req.body;
+    const {
+      name,
+      release_date,
+      description,
+      engine_id,
+      developers_ids,
+      genres_ids,
+    } = req.body;
 
     const engine = await Engine.findByPk(engine_id);
 
@@ -28,6 +47,14 @@ module.exports = {
       description,
       engine_id,
     });
+
+    if (genres_ids && genres_ids.length > 0) {
+      game.setGenres(genres_ids);
+    }
+
+    if (developers_ids && developers_ids.length > 0) {
+      game.setDevelopers(developers_ids);
+    }
 
     return res.json(game);
   },
