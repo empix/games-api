@@ -5,6 +5,7 @@ const EngineController = require('./controllers/EngineController');
 const GameController = require('./controllers/GameController');
 const GenreController = require('./controllers/GenreController');
 const DeveloperController = require('./controllers/DeveloperController');
+const PublisherController = require('./controllers/PublisherController');
 
 router.get('/engine', EngineController.index);
 router.post('/engine', EngineController.store);
@@ -18,5 +19,7 @@ router.post('/genre', GenreController.store);
 
 router.get('/developer', DeveloperController.index);
 router.post('/developer', DeveloperController.store);
+
+router.post('/publisher', PublisherController.store);
 
 module.exports = router;
