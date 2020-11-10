@@ -9,6 +9,14 @@ class Publisher extends Model {
       { sequelize }
     );
   }
+
+  static associate(models) {
+    this.belongsToMany(models.Game, {
+      foreignKey: 'publisher_id',
+      through: 'game_publishers',
+      as: 'games',
+    });
+  }
 }
 
 module.exports = Publisher;

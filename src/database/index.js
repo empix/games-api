@@ -9,15 +9,16 @@ const Publisher = require('../models/Publisher');
 
 const sequelize = new Sequelize(config);
 
-Engine.init(sequelize);
 Game.init(sequelize);
+Engine.init(sequelize);
 Genre.init(sequelize);
 Developer.init(sequelize);
 Publisher.init(sequelize);
 
-Engine.associate(sequelize.models);
 Game.associate(sequelize.models);
+Engine.associate(sequelize.models);
 Genre.associate(sequelize.models);
 Developer.associate(sequelize.models);
+Publisher.associate(sequelize.models);
 
 module.exports = sequelize;

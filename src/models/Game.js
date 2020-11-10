@@ -24,6 +24,11 @@ class Game extends Model {
       through: 'game_developers',
       as: 'developers',
     });
+    this.belongsToMany(models.Publisher, {
+      foreignKey: 'game_id',
+      through: 'game_publishers',
+      as: 'publishers',
+    });
   }
 }
 
