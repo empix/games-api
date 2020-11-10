@@ -16,6 +16,11 @@ module.exports = {
           attributes: ['id', 'name'],
           through: { attributes: [] },
         },
+        {
+          association: 'publishers',
+          attributes: ['id', 'name'],
+          through: { attributes: [] },
+        },
       ],
       attributes: ['id', 'name', 'release_date', 'description'],
     });
@@ -29,8 +34,9 @@ module.exports = {
       release_date,
       description,
       engine_id,
-      developers_ids,
       genres_ids,
+      developers_ids,
+      publishers_ids,
     } = req.body;
 
     const engine = await Engine.findByPk(engine_id);
@@ -54,6 +60,10 @@ module.exports = {
 
     if (developers_ids && developers_ids.length > 0) {
       game.setDevelopers(developers_ids);
+    }
+
+    if (publishers_ids && publishers_ids.length > 0) {
+      game.setPublishers(publishers_ids);
     }
 
     return res.json(game);
