@@ -1,29 +1,60 @@
 const Game = require('../models/Game');
 const Engine = require('../models/Engine');
 
+const findOptions = {
+  include: [
+    { association: 'engine', attributes: ['id', 'name'] },
+    {
+      association: 'genres',
+      attributes: ['id', 'name'],
+      through: { attributes: [] },
+    },
+    {
+      association: 'developers',
+      attributes: ['id', 'name'],
+      through: { attributes: [] },
+    },
+    {
+      association: 'publishers',
+      attributes: ['id', 'name'],
+      through: { attributes: [] },
+    },
+  ],
+  attributes: ['id', 'name', 'release_date', 'description'],
+};
+
 module.exports = {
+  async findByPk(req, res) {
+    const { id } = req.params;
+
+    const game = await Game.findByPk(id, findOptions);
+
+    if (!game) {
+      return res.status(404).json({ error: `Game not found with id ${id}` });
+    }
+
+    return res.json(game);
+  },
+
   async index(req, res) {
-    const games = await Game.findAll({
-      include: [
-        { association: 'engine', attributes: ['id', 'name'] },
-        {
-          association: 'genres',
-          attributes: ['id', 'name'],
-          through: { attributes: [] },
-        },
-        {
-          association: 'developers',
-          attributes: ['id', 'name'],
-          through: { attributes: [] },
-        },
-        {
-          association: 'publishers',
-          attributes: ['id', 'name'],
-          through: { attributes: [] },
-        },
-      ],
-      attributes: ['id', 'name', 'release_date', 'description'],
-    });
+    let { page, limit } = req.query;
+    page = parseInt(page) || 1;
+    limit = parseInt(limit) || 10;
+    const offset = limit * (page - 1);
+
+    if (limit > 20 || limit < 1) {
+      return res
+        .status(400)
+        .json({ error: 'The limit must be between 1 and 20' });
+    }
+
+    if (page < 1) {
+      return res.status(400).json({ error: 'The page must be greater than 0' });
+    }
+
+    findOptions.limit = limit;
+    findOptions.offset = offset;
+    const games = await Game.findAll(findOptions);
 
     return res.json(games);
   },
