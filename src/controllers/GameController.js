@@ -101,7 +101,7 @@ module.exports = {
   },
 
   async delete(req, res) {
-    const { id } = req.body;
+    const { id } = req.params;
 
     const game = await Game.destroy({ where: { id } });
 

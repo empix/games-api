@@ -13,7 +13,7 @@ router.post('/engine', EngineController.store);
 router.get('/games/:id', GameController.findByPk);
 router.get('/games', GameController.index);
 router.post('/game', GameController.store);
-router.delete('/game', GameController.delete);
+router.delete('/games/:id', GameController.delete);
 
 router.get('/genre', GenreController.index);
 router.post('/genre', GenreController.store);
