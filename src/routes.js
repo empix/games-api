@@ -7,7 +7,7 @@ const GenreController = require('./controllers/GenreController');
 const DeveloperController = require('./controllers/DeveloperController');
 const PublisherController = require('./controllers/PublisherController');
 
-router.get('/engine', EngineController.index);
+router.get('/engines', EngineController.index);
 router.post('/engine', EngineController.store);
 
 router.get('/games/:id', GameController.findByPk);
