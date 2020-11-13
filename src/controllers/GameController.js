@@ -1,5 +1,6 @@
 const Game = require('../models/Game');
 const Engine = require('../models/Engine');
+const pagination = require('../utils/pagination');
 
 const findOptions = {
   include: [
@@ -37,19 +38,10 @@ module.exports = {
   },
 
   async index(req, res) {
-    let { page, limit } = req.query;
-    page = parseInt(page) || 1;
-    limit = parseInt(limit) || 10;
-    const offset = limit * (page - 1);
+    const { limit, offset, error } = pagination(req.query);
 
-    if (limit > 20 || limit < 1) {
-      return res
-        .status(400)
-        .json({ error: 'The limit must be between 1 and 20' });
-    }
-
-    if (page < 1) {
-      return res.status(400).json({ error: 'The page must be greater than 0' });
+    if (error) {
+      return res.status(400).json({ error });
     }
 
     findOptions.limit = limit;

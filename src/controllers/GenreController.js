@@ -1,8 +1,15 @@
 const Genre = require('../models/Genre');
+const pagination = require('../utils/pagination');
 
 module.exports = {
   async index(req, res) {
-    const genres = await Genre.findAll();
+    const { limit, offset, error } = pagination(req.query);
+
+    if (error) {
+      return res.status(400).json({ error });
+    }
+
+    const genres = await Genre.findAll({ limit, offset });
 
     return res.json(genres);
   },

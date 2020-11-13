@@ -1,8 +1,15 @@
 const Developer = require('../models/Developer');
+const pagination = require('../utils/pagination');
 
 module.exports = {
   async index(req, res) {
-    const developers = await Developer.findAll();
+    const { limit, offset, error } = pagination(req.query);
+
+    if (error) {
+      return res.status(400).json({ error });
+    }
+
+    const developers = await Developer.findAll({ limit, offset });
 
     return res.json(developers);
   },
