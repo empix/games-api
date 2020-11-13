@@ -21,4 +21,12 @@ module.exports = {
 
     return res.json(genre);
   },
+
+  async delete(req, res) {
+    const { id } = req.params;
+
+    const genre = await Genre.destroy({ where: { id } });
+
+    return res.json(genre);
+  },
 };

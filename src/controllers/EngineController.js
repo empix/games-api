@@ -25,4 +25,12 @@ module.exports = {
 
     return res.json(engine);
   },
+
+  async delete(req, res) {
+    const { id } = req.params;
+
+    const engine = await Engine.destroy({ where: { id } });
+
+    return res.json(engine);
+  },
 };

@@ -21,4 +21,12 @@ module.exports = {
 
     return res.json(publisher);
   },
+
+  async delete(req, res) {
+    const { id } = req.params;
+
+    const publisher = await Publisher.destroy({ where: { id } });
+
+    return res.json(publisher);
+  },
 };
