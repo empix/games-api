@@ -20,8 +20,32 @@ Estudar e aprender mais sobre o ORM Sequelize e APIs.
 
 ### Endpoints
 
-**GET** - `/engine` - Lista todas as engines no banco de dados <br>
-**POST** - `/engine` - Adiciona uma engine no banco de dados <br>
+#### Games
+
+`GET /games?page=1&limit=10` - Lista os jogos<br>
+`DELETE /games/:id` - Deleta um jogos<br>
+`POST /games` - Adiciona um jogo<br>
+**Exemplo de corpo json:**
+
+```json
+{
+  "name": "Undertale",
+  "release_date": "2015-09-15",
+  "description": "UNDERTALE! The RPG game where you don't have to destroy anyone.",
+  "engine_id": 1,
+  "genres_ids": [1, 2],
+  "developers_ids": [1, 2],
+  "publishers_ids": [1, 2]
+}
+```
+
+<br>
+
+#### Engines
+
+`GET /engines?page=1&limit=10` - Lista as engines<br>
+`DELETE /engines/:id` - Deleta uma engine<br>
+`POST /engines` - Adiciona uma engine<br>
 **Exemplo de corpo json:**
 
 ```json
@@ -32,35 +56,46 @@ Estudar e aprender mais sobre o ORM Sequelize e APIs.
 
 <br>
 
-**GET** - `/game` - Lista todos os jogos no banco de dados <br>
-**POST** - `/game` - Adiciona um jogo no banco de dados <br>
-**Exemplo de corpo json:**
+#### Genres
 
-```json
-{
-  "name": "Undertale",
-  "release_date": "2015-09-15",
-  "description": "UNDERTALE! The RPG game where you don't have to destroy anyone.",
-  "engine_id": 1
-}
-```
-
-**DELETE** - `/game` - Deleta um jogo no banco de dados <br>
-**Exemplo de corpo json:**
-
-```json
-{
-  "id": 1
-}
-```
-
-**GET** - `/genre` - Lista todos os generos no banco de dados <br>
-**POST** - `/genre` - Adiciona um genero no banco de dados <br>
+`GET /genres?page=1&limit=10` - Lista os generos<br>
+`DELETE /genres/:id` - Deleta um genero<br>
+`POST /genres` - Adiciona um genero<br>
 **Exemplo de corpo json:**
 
 ```json
 {
   "name": "Indie"
+}
+```
+
+<br>
+
+#### Developers
+
+`GET /developers?page=1&limit=10` - Lista os developers<br>
+`DELETE /developers/:id` - Deleta um developer<br>
+`POST /developers` - Adiciona um developer<br>
+**Exemplo de corpo json:**
+
+```json
+{
+  "name": "tobyfox"
+}
+```
+
+<br>
+
+#### Publishers
+
+`GET /publishers?page=1&limit=10` - Lista os publishers<br>
+`DELETE /publishers/:id` - Deleta um publisher<br>
+`POST /publishers` - Adiciona um publisher<br>
+**Exemplo de corpo json:**
+
+```json
+{
+  "name": "tobyfox"
 }
 ```
 
