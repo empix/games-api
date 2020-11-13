@@ -23,7 +23,7 @@ Estudar e aprender mais sobre o ORM Sequelize e APIs.
 #### Games
 
 `GET /games?page=1&limit=10` - Lista os jogos<br>
-`DELETE /games/:id` - Deleta um jogos<br>
+`DELETE /games/:id` - Deleta um jogo<br>
 `POST /games` - Adiciona um jogo<br>
 **Exemplo de corpo json:**
 
