@@ -9,11 +9,7 @@ module.exports = {
       return res.status(400).json({ error });
     }
 
-    const engines = await Engine.findAll({
-      attributes: ['id', 'name'],
-      limit,
-      offset,
-    });
+    const engines = await Engine.findAll({ limit, offset });
 
     return res.json(engines);
   },
